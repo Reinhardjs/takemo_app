@@ -603,4 +603,10 @@ file:///C:/flutter-dev/packages/flutter/lib/widgets.dart
 file:///D:/RJS%20Files/My%20Project/TakeMoProject/takemo-flutter/takemo_app/.dart_tool/flutter_build/4d3eee693ee299cb5ec32720936bb2a7/main.dart
 file:///D:/RJS%20Files/My%20Project/TakeMoProject/takemo-flutter/takemo_app/.packages
 file:///D:/RJS%20Files/My%20Project/TakeMoProject/takemo-flutter/takemo_app/lib/main.dart
-file:///D:/RJS%20Files/My%20Project/TakeMoProject/takemo-flutter/takemo_app/lib/ui/home/HomeAppBar.dart
+file:///D:/RJS%20Files/My%20Project/TakeMoProject/takemo-flutter/takemo_app/lib/model/Product.dart
+file:///D:/RJS%20Files/My%20Project/TakeMoProject/takemo-flutter/takemo_app/lib/ui/pages/ProductPage.dart
+file:///D:/RJS%20Files/My%20Project/TakeMoProject/takemo-flutter/takemo_app/lib/ui/tabpages/Blue.dart
+file:///D:/RJS%20Files/My%20Project/TakeMoProject/takemo-flutter/takemo_app/lib/ui/tabpages/HomeTabPage.dart
+file:///D:/RJS%20Files/My%20Project/TakeMoProject/takemo-flutter/takemo_app/lib/ui/tabpages/Red.dart
+file:///D:/RJS%20Files/My%20Project/TakeMoProject/takemo-flutter/takemo_app/lib/ui/widgets/HomeAppBar.dart
+file:///D:/RJS%20Files/My%20Project/TakeMoProject/takemo-flutter/takemo_app/lib/ui/widgets/ProductBox.dart

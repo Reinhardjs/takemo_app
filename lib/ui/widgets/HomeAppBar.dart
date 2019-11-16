@@ -64,6 +64,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   new Container(
+                      padding: EdgeInsets.all(11.0),
                       child: Image(
                           image: AssetImage("assets/bike_icon.png"),
                           width: 10,
@@ -98,6 +99,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                         ],
                       )),
                   new Container(
+                      padding: EdgeInsets.all(20.0),
                       child: Image(
                           image: AssetImage("assets/service_icon.png"),
                           width: 50,
@@ -132,6 +134,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                         ],
                       )),
                   new Container(
+                      padding: EdgeInsets.all(20.0),
                       child: Image(
                           image: AssetImage("assets/wash_icon.png"),
                           width: 50,
