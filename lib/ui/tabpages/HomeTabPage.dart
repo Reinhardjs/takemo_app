@@ -5,7 +5,7 @@ import 'package:takemo_app/ui/pages/ProductPage.dart';
 import 'package:takemo_app/ui/widgets/HomeAppBar.dart';
 import 'package:takemo_app/ui/widgets/ProductBox.dart';
 
-class HomePage extends StatelessWidget {
+class HomeTabPage extends StatelessWidget {
 
   final items = Product.getProducts();
 
