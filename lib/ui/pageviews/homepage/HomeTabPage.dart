@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:takemo_app/ui/pageviews/homepage/ProductListWidget.dart';
-import 'package:takemo_app/ui/widgets/homewidgets//HomeAppBar.dart';
+
+import 'widgets/HomeAppBar.dart';
 
 class HomeTabPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -16,7 +15,6 @@ class HomeTabPage extends StatelessWidget {
                 HomeAppBar(
                   height: MediaQuery.of(context).size.height,
                 ),
-                ProductListWidget(),
               ],
             )));
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:takemo_app/bloc/AppBloc.dart';
-import 'package:takemo_app/bloc/BlocProvider.dart';
 import 'package:takemo_app/model/Product.dart';
 import 'package:takemo_app/ui/pageviews/Blue.dart';
 import 'package:takemo_app/ui/pageviews/Red.dart';
@@ -30,9 +30,14 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+      statusBarColor: Color(0xFF272727), //or set color with: Color(0xFF0000FF)
+    ));
+
     // Material is a conceptual piece of paper on which the UI appears.
     return Scaffold(
-      body: BlocProvider(bloc: appBloc, child: buildPageView()),
+      body: buildPageView(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: bottomSelectedIndex,
         onTap: (index) {
@@ -55,7 +60,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
     appBloc.dispose();
   }

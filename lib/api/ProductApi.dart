@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:takemo_app/model/Product.dart';
 
 class ProductApi {
-  final String _endpoint = "https://api.jsonbin.io/b/5dd25c1f3da40e6f298b80e8";
+  final String _endpoint = "https://api.jsonbin.io/b/5dd25c1f3da40e6f298b80e8/4";
   final Dio _dio = Dio();
 
   Future<ProductResponse> getProductResponse() async {
@@ -16,4 +16,5 @@ class ProductApi {
       return ProductResponse.withError("$error");
     }
   }
+
 }

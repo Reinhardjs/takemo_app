@@ -2,21 +2,21 @@ class Product {
   final String name;
   final String description;
   final int price;
-  final String image;
+  final String imageUrl;
 
-  Product(this.name, this.description, this.price, this.image);
+  Product(this.name, this.description, this.price, this.imageUrl);
 
   Product.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         description = json['description'],
         price = json['price'],
-        image = json['image'];
+        imageUrl = json['image'];
 
   Map<String, dynamic> toJson() => {
         'name': name,
         'description': description,
         'price': price,
-        'image': image,
+        'image': imageUrl,
       };
 
   // Dummy data
