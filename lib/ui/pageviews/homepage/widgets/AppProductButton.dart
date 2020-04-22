@@ -1,46 +1,51 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AppProductButton extends StatelessWidget {
+class DealerButton extends StatelessWidget {
 
-  AppProductButton({Key key, this.imageAsset, this.padding = 20.0})
+  DealerButton({Key key, this.title = "Producers", this.imageAsset, this.imageUrl, this.padding = 20.0})
       : super(key: key);
 
+  final String title;
   final String imageAsset;
+  final String imageUrl;
   final double padding;
 
   @override
   Widget build(BuildContext context) {
+
+    double borderRadius = 10;
+
+    Widget getImage(String imageAsset, String imageUrl){
+      if (imageAsset != "" && imageAsset != null){
+        // example, imageAsset = "assets/bike_icon.png"
+        return ClipRRect(
+            borderRadius: BorderRadius.circular(borderRadius),
+            child: Image(image: AssetImage(imageAsset), fit: BoxFit.fill));
+      } else if (imageUrl != "" && imageUrl != null){
+        return ClipRRect(
+            borderRadius: BorderRadius.circular(borderRadius),
+            child: Image.network(imageUrl, fit: BoxFit.fill));
+      }
+    }
+
     return new Container(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: getImage(imageAsset, imageUrl),
+            )
+            // Text(title)
+          ],
+        ),
         padding: EdgeInsets.all(this.padding),
-        child: Image(
-            image: AssetImage(imageAsset),
-            width: 50,
-            height: 50),
-        constraints: BoxConstraints(
-            minWidth: 50,
-            maxWidth: 80,
-            minHeight: 50,
-            maxHeight: 80),
-        height: MediaQuery
-            .of(context)
-            .size
-            .width * 0.245,
-        width: MediaQuery
-            .of(context)
-            .size
-            .width * 0.245,
         margin: EdgeInsets.symmetric(
             vertical: 0.0,
-            horizontal:
-            MediaQuery
-                .of(context)
-                .size
-                .width * 0.035),
+            horizontal: 0.0),
         decoration: new BoxDecoration(
           color: Colors.white,
           borderRadius:
-          new BorderRadius.all(new Radius.circular(20)),
+          new BorderRadius.all(new Radius.circular(borderRadius)),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.5),

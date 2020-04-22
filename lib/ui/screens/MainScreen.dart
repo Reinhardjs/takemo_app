@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:takemo_app/bloc/AppBloc.dart';
-import 'package:takemo_app/model/Product.dart';
 import 'package:takemo_app/ui/pageviews/Blue.dart';
 import 'package:takemo_app/ui/pageviews/Red.dart';
 import 'package:takemo_app/ui/pageviews/homepage/HomeTabPage.dart';
@@ -16,7 +15,6 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int bottomSelectedIndex = 0;
-  final items = Product.getProducts();
 
   PageController pageController = PageController(
     initialPage: 0,
@@ -25,11 +23,13 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
+    print("MainScreen init");
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    print("MainScreen build");
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
       statusBarColor: Color(0xFF272727), //or set color with: Color(0xFF0000FF)
@@ -37,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
 
     // Material is a conceptual piece of paper on which the UI appears.
     return Scaffold(
-      body: buildPageView(),
+      body: HomeTabPage(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: bottomSelectedIndex,
         onTap: (index) {
@@ -62,7 +62,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void dispose() {
     super.dispose();
-    appBloc.dispose();
+    AppBloc.appBloc.dispose();
   }
 
   Widget buildPageView() {

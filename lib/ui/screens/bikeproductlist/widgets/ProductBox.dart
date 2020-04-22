@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:takemo_app/model/Product.dart';
+import 'package:takemo_app/model/entities/Product.dart';
 
 class ProductBox extends StatelessWidget {
   ProductBox({Key key, this.item}) : super(key: key);

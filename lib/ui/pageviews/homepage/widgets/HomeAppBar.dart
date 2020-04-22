@@ -2,9 +2,7 @@ import 'package:clip_shadow/clip_shadow.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:takemo_app/ui/screens/bikeproductlist/BikeProductsScreen.dart';
-
-import 'AppProductButton.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
   final double height;
@@ -26,100 +24,66 @@ class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
 
 class _HomeAppBarState extends State<HomeAppBar> {
   static const platform = const MethodChannel('flutter.native/toast_helper');
-  String _responseFromNativeCode = 'Waiting for Response...';
 
-  Future<void> responseFromNativeCode() async {
-    String response = "";
-    try {
-      final String result = await platform.invokeMethod('showToast');
-      response = result;
-    } on PlatformException catch (e) {
-      response = "Failed to Invoke: '${e.message}'.";
-    }
-
-    setState(() {
-      _responseFromNativeCode = response;
-    });
-  }
+//  String _responseFromNativeCode = 'Waiting for Response...';
+//
+//  Future<void> responseFromNativeCode() async {
+//    String response = "";
+//    try {
+//      final String result = await platform.invokeMethod('showToast');
+//      response = result;
+//    } on PlatformException catch (e) {
+//      response = "Failed to Invoke: '${e.message}'.";
+//    }
+//
+//    setState(() {
+//      _responseFromNativeCode = response;
+//    });
+//  }
 
   @override
   Widget build(BuildContext context) {
     return Stack(alignment: Alignment.center, children: <Widget>[
       Container(
-        padding: EdgeInsets.only(bottom: 50),
+        padding: EdgeInsets.only(bottom: 0),
         child: new WavyHeaderImage(),
       ),
-      Positioned(
-          bottom: MediaQuery.of(context).size.height * 0.0275 + 18.5,
-          child: Column(
-            children: <Widget>[
-              // Ini widget search bar
-              new Container(
-                  padding: EdgeInsets.symmetric(
-                      vertical: 0,
-                      horizontal: MediaQuery.of(context).size.width * 0.08),
-                  child: TextField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Enter a search term'),
+      Container(
+          padding: EdgeInsets.symmetric(
+              vertical: 0, horizontal: MediaQuery.of(context).size.width * 0),
+          child: TextField(
+            decoration: InputDecoration(
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(12.5),
+                  child: SvgPicture.asset(
+                      "assets/search.svg",
+                      width: 0.0,
+                      color: Colors.black,
+                      semanticsLabel: 'Search'
                   ),
-                  constraints: BoxConstraints(maxWidth: 285),
-                  height: 45,
-                  width: MediaQuery.of(context).size.width * 0.825,
-                  margin: EdgeInsets.symmetric(
-                      vertical: MediaQuery.of(context).size.height * 0.07,
-                      horizontal: 15.0),
-                  decoration: new BoxDecoration(
-                    color: Colors.white,
-                    borderRadius:
-                        new BorderRadius.all(new Radius.circular(100)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.5),
-                        blurRadius: 7.0,
-                        // has the effect of softening the shadow
-                        spreadRadius: 0.75,
-                        // has the effect of extending the shadow
-                        offset: Offset(
-                          0, // horizontal, move right 0
-                          1, // vertical, move down 10
-                        ),
-                      )
-                    ],
-                  )),
-
-              // Ini widget 3 kotak di bawah search bar
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BikeProductsScreen(),
-                          ),
-                        );
-                      },
-                      child: AppProductButton(
-                          imageAsset: "assets/bike_icon.png", padding: 10.0)),
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BikeProductsScreen(),
-                          ),
-                        );
-                      },
-                      child: AppProductButton(
-                          imageAsset: "assets/service_icon.png",
-                          padding: 20.0)),
-                  GestureDetector(
-                      onTap: responseFromNativeCode,
-                      child: AppProductButton(
-                          imageAsset: "assets/wash_icon.png", padding: 20.0))
-                ],
+                ),
+                suffixIcon: Icon(Icons.place),
+                border: InputBorder.none,
+                hintText: 'Lokasi ku'),
+          ),
+          // constraints: BoxConstraints(maxWidth: 285),
+          height: 45,
+          width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.fromLTRB(50, 0, 50, 35),
+          decoration: new BoxDecoration(
+            color: Colors.white,
+            borderRadius: new BorderRadius.all(new Radius.circular(100)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.5),
+                blurRadius: 7.0,
+                // has the effect of softening the shadow
+                spreadRadius: 0.75,
+                // has the effect of extending the shadow
+                offset: Offset(
+                  0, // horizontal, move right 0
+                  1, // vertical, move down 10
+                ),
               )
             ],
           )),
@@ -130,6 +94,8 @@ class _HomeAppBarState extends State<HomeAppBar> {
 class WavyHeaderImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double homeAppBarContainerHeight = 100;
+
     return ClipShadow(
       clipper: BottomCurvedClipper(),
       boxShadow: [
@@ -144,8 +110,7 @@ class WavyHeaderImage extends StatelessWidget {
         )
       ],
       child: new Container(
-        constraints: BoxConstraints(minHeight: 150),
-        height: MediaQuery.of(context).size.height * 0.3,
+        constraints: BoxConstraints(minHeight: homeAppBarContainerHeight),
         decoration: new BoxDecoration(
           color: Color(0xFF272727),
 //          color: Color(0xff181c1f),
@@ -161,13 +126,18 @@ class BottomCurvedClipper extends CustomClipper<Path> {
     var path = new Path();
     path.lineTo(0.0, size.height);
 
-    var firstControlPoint = Offset(size.width / 4, size.height - 30.0);
-    var firstEndPoint = Offset(size.width / 2, size.height - 30.0);
+    int curvedSize = 7;
+
+    var firstControlPoint = Offset(size.width / 4, size.height - curvedSize);
+    var firstEndPoint = Offset(size.width / 2, size.height - curvedSize);
+
     path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
         firstEndPoint.dx, firstEndPoint.dy);
 
-    var secondControlPoint = Offset(size.width * 0.75, size.height - 30);
+    var secondControlPoint =
+        Offset(size.width * 0.75, size.height - curvedSize);
     var secondEndPoint = Offset(size.width, size.height);
+
     path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
         secondEndPoint.dx, secondEndPoint.dy);
 

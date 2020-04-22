@@ -9,20 +9,21 @@ import 'package:takemo_app/ui/screens/bikeproductlist/widgets/ProductBox.dart';
 
 import '../bikeproductdetail/ProductDetailScreen.dart';
 
-class ProductListWidget extends StatefulWidget {
+class BestSellingProductListWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _ProductListWidgetState();
+    return _BestSellingProductListWidgetState();
   }
 }
 
-class _ProductListWidgetState extends State<ProductListWidget> {
+class _BestSellingProductListWidgetState extends State<BestSellingProductListWidget> {
+
   @override
   Widget build(BuildContext context) {
-    AppBloc appBloc = BlocProvider.of<AppBloc>(context).bloc;
-    ProductBloc productBloc = appBloc.productBloc;
+    final AppBloc appBloc = BlocProvider.of<AppBloc>(context).bloc;
+    final ProductBloc productBloc = appBloc.productBloc;
 
-    print("_ProductListWidgetState build");
+    print("_BestSellingProductListWidgetState build");
 
     if (productBloc.requestForFirstTime) {
       productBloc.getProductList();
@@ -58,6 +59,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
 //    final double _aspectRatio = (itemWidth /itemHeight);
 
     return GridView.builder(
+        physics: NeverScrollableScrollPhysics(),
         padding: EdgeInsets.all(5.0),
         itemCount: products.length,
         shrinkWrap: true,
@@ -88,7 +90,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
     return Center(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text("Loading data dari API..."), CircularProgressIndicator()],
+      children: [Text("Loading data..."), CircularProgressIndicator()],
     ));
   }
 
